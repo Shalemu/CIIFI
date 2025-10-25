@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIIFI - Building Financially Informed Communities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <span><i class="fas fa-phone"></i> +255 712 345 678</span>
+      <span><i class="fas fa-envelope"></i> info@ciifi.or.tz</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Login</a>
+      <a href="#">Donate</a>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="images/CIIFI_LOGO.png" alt="CIIFI Logo" class="logo">
+    </div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Work</a>
+        <div class="dropdown-content">
+          <a href="#our-work">Our Work</a>
+          <a href="#programs">Programs</a>
+          <a href="#resources">Resources</a>
+        </div>
+      </div>
+
+      <a href="#stories">Stories</a>
+
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Get Involved</a>
+        <div class="dropdown-content">
+          <a href="#volunteer">Volunteer</a>
+          <a href="#partner">Partner</a>
+          <a href="#donate">Donate</a>
+        </div>
+      </div>
+
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Building Financially Informed and Protected Communities</h1>
+      <p>
+        Across Tanzania, countless families face financial uncertainty every day.
+        CIIFI empowers communities with financial education and inclusive insurance
+        solutions — helping people build resilience, stability, and a secure future.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-green">Learn More</button>
+        <button class="btn btn-orange">Join the Movement</button>
+        <button class="btn btn-blue">Partner With Us</button>
+      </div>
+
+<!-- Hero Stats -->
+<div class="hero-search hero-stats">
+  <div class="stat">
+    <div class="stat-icon"><i class="fas fa-users"></i></div>
+    <div class="stat-info">
+      <strong data-target="10000">0</strong>
+      <span>People Reached</span>
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+    <div class="stat-info">
+      <strong data-target="150">0</strong>
+      <span>Trainings Held</span>
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+    <div class="stat-info">
+      <strong data-target="25">0</strong>
+      <span>Partnerships Formed</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  //  Count-up animation
+  const counters = document.querySelectorAll('.hero-stats strong');
+  const speed = 200;
+
+  const animateCount = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    const count = +counter.innerText;
+    const increment = target / speed;
+
+    if (count < target) {
+      counter.innerText = Math.ceil(count + increment);
+      setTimeout(() => animateCount(counter), 20);
+    } else {
+      counter.innerText = target.toLocaleString();
+    }
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          counters.forEach((counter) => animateCount(counter));
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  observer.observe(document.querySelector('.hero-stats'));
+</script>
+  </section>
+
+
+<section class="about-section" id="about">
+  <div class="container">
+    <!-- ===== Row 1: Who We Are ===== -->
+    <div class="about-row top-row">
+      <div class="about-left">
+        <div class="section-header">
+          <span class="border-line"></span>
+          <h2>Who We Are</h2>
+        </div>
+        <h3>About CIIFI</h3>
+        <p>
+          The Community Initiative for Insurance and Financial Inclusion (CIIFI) is a non-profit organization based in Tanzania that exists to make insurance and financial education part of everyday life. The organization was established to bridge the gap between financial systems and the communities they are meant to serve.
+        </p>
+        <p>
+          Many people find financial terms intimidating or inaccessible. CIIFI turns those ideas into simple, relatable lessons that connect with daily experiences—from small market traders to teachers, students, and farmers.
+        </p>
+        <p>
+          The mission is clear: to empower communities with the knowledge and confidence to make informed financial decisions and protect what matters most.
+        </p>
+        <a href="#" class="btn-learn">Learn More</a>
+      </div>
+
+      <div class="about-right">
+        <div class="about-image">
+          <img src="images/community.jpg" alt="CIIFI community training" />
+          <div class="image-overlay">
+            <div class="overlay-text">
+              <i class="fas fa-users"></i>
+              <p>Empowering communities through financial inclusion</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Row 2: Mission / Vision / Values ===== -->
+    <div class="about-row bottom-row">
+      <div class="subsection">
+        <i class="fas fa-eye"></i>
+        <h4>Our Vision</h4>
+        <p>A society where every Tanzanian understands the value of protection, planning, and preparation.</p>
+      </div>
+      <div class="subsection">
+        <i class="fas fa-bullseye"></i>
+        <h4>Our Mission</h4>
+        <p>To empower communities with financial literacy and insurance education that supports better livelihoods.</p>
+      </div>
+      <div class="subsection">
+        <i class="fas fa-heart"></i>
+        <h4>Our Values</h4>
+        <p>Inclusivity, transparency, integrity, and collaboration in every step of community engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".subsection");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+  }, { threshold: 0.2 });
+  
+  sections.forEach(sec => observer.observe(sec));
+});
+</script>
+
+
+
+<section class="team-section fade-in">
+  <div class="team-header">
+    <h2>Meet Our Team</h2>
+    <p>Dedicated people driving financial inclusion and empowerment.</p>
+  </div>
+
+  <div class="team-bg">
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="https://cdn-icons-png.flaticon.com/512/3048/3048127.png" alt="Chairperson Icon">
+        <h3> Chairperson</h3>
+        <p>Provides strategic leadership and ensures transparency in governance.</p>
+      </div>
+
+      <div class="team-member">
+        <img src="https://cdn-icons-png.flaticon.com/512/706/706830.png" alt="Secretary Icon">
+        <h3>General Secretary </h3>
+        <p>Oversees operations and coordination across all CIIFI initiatives.</p>
+      </div>
+
+      <div class="team-member">
+        <img src="https://cdn-icons-png.flaticon.com/512/706/706814.png" alt="Treasurer Icon">
+        <h3>Treasurer</h3>
+        <p>Maintains transparent financial management and reporting.</p>
+      </div>
+
+      <div class="team-member">
+        <img src="https://cdn-icons-png.flaticon.com/512/921/921347.png" alt="Trustee Icon">
+        <h3>Board of Trustees</h3>
+        <p>Guides long-term planning and sustainability of CIIFI’s vision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Smooth fade-in animation
+  document.addEventListener("DOMContentLoaded", () => {
+    const fadeElems = document.querySelectorAll(".fade-in");
+    const appearOnScroll = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 }
+    );
+    fadeElems.forEach(el => appearOnScroll.observe(el));
+  });
+</script>
+
+
+<section class="ciifi-hero-section" id="our-work">
+  <!-- HERO -->
+  <div class="hero-area" style="background-image: url('images/financial\ \(2\).jpg');">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h2>What We Do</h2>
+      <p>
+        Insurance and financial planning may seem complicated, yet their impact is simple:
+        they protect lives, families, and livelihoods. CIIFI helps people understand these systems
+        through participatory learning and community engagement.
+      </p>
+    </div>
+  </div>
+
+  <!-- FEATURE CARDS OVERLAPPING HERO -->
+  <div class="work-container feature-wrapper">
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-book-reader"></i>
+        <h4>Insurance & Financial Literacy</h4>
+        <p>Workshops and programs that teach people to budget, save, and plan for the unexpected.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-chart-line"></i>
+        <h4>Research & Policy Advocacy</h4>
+        <p>We gather data and promote policies that make financial systems fair and inclusive.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-users"></i>
+        <h4>Community Empowerment</h4>
+        <p>Training local leaders and groups to share financial knowledge within their communities.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h4>Digital Innovation & Access</h4>
+        <p>Using mobile and online tools to connect educators and learners across regions.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <div class="about-work">
+    <div class="container about-content">
+      <div class="about-text">
+        <h3>We Help People Understand Insurance and Finance</h3>
+        <p>
+          From classrooms to communities, CIIFI helps people build financial confidence through
+          inclusive training, research, and technology-driven programs.
+        </p>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Financial education for everyone</li>
+          <li><i class="fas fa-check-circle"></i> Research for better policies</li>
+          <li><i class="fas fa-check-circle"></i> Digital tools for easy access</li>
+        </ul>
+        <a href="#" class="btn">Explore Our Work</a>
+      </div>
+      <div class="about-images">
+        <img src="images/hero_section.jpg" alt="CIIFI Training Session">
+        <!-- <div class="play-btn"><i class="fas fa-play"></i></div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR IMPACT SECTION -->
+<section class="our-impact" id="impact">
+  <div class="container impact-content">
+    <div class="impact-text">
+      <h3>Turning Awareness Into Action</h3>
+      <p>
+        Every person reached represents a story of transformation. A mother who now saves for her children’s education, 
+        a farmer who protects his crops against drought, a young entrepreneur who secures her small business—these are the true measures of progress.
+      </p>
+      <p>
+        The reach of CIIFI’s programs continues to expand as more partners, schools, and local governments recognize the value of financial education. 
+        Awareness is turning into practice, and practice is building resilience.
+      </p>
+
+    <div class="impact-stats">
+  <div class="stat-card">
+    <h4><span class="count" data-target="12000">0</span>+</h4>
+    <p>People reached across 7 regions</p>
+  </div>
+  <div class="stat-card">
+    <h4><span class="count" data-target="300">0</span>+</h4>
+    <p>Youth & community educators trained</p>
+  </div>
+  <div class="stat-card">
+    <h4><span class="count" data-target="45">0</span>+</h4>
+    <p>Public dialogues & awareness events</p>
+  </div>
+  <div class="stat-card">
+    <h4><span class="count" data-target="20">0</span>+</h4>
+    <p>Partnerships with key institutions</p>
+  </div>
+</div>
+
+
+      <a href="#" class="impact-btn">See How We Make a Difference</a>
+    </div>
+
+    <div class="impact-image">
+      <img src="images/Community.jpeg" alt="CIIFI Impact Story">
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count");
+    let animated = false;
+
+    function animateCounters() {
+      const triggerBottom = window.innerHeight * 0.9;
+      const impactSection = document.querySelector(".our-impact");
+      const sectionTop = impactSection.getBoundingClientRect().top;
+
+      if (!animated && sectionTop < triggerBottom) {
+        counters.forEach(counter => {
+          const target = +counter.getAttribute("data-target");
+          let current = 0;
+          const increment = target / 100; // adjust for speed
+
+          const updateCount = () => {
+            current += increment;
+            if (current < target) {
+              counter.innerText = Math.ceil(current);
+              requestAnimationFrame(updateCount);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          };
+
+          // show the count nicely
+          counter.style.opacity = 1;
+          counter.style.transform = "translateY(0)";
+          updateCount();
+        });
+
+        animated = true;
+      }
+    }
+
+    window.addEventListener("scroll", animateCounters);
+  });
+</script>
+
+<section class="programs-area" id="programs">
+  <div class="container">
+    <!-- Header -->
+    <div class="programs-intro" data-aos="fade-up">
+      <div class="intro-left">
+        <h2><span>Our</span> Programs</h2>
+        <p>
+          CIIFI leads initiatives that educate, empower, and connect communities 
+          with the tools to achieve financial security and inclusion.
+        </p>
+      </div>
+      <div class="intro-right">
+        <a href="#" class="cta-btn">View All Programs</a>
+      </div>
+    </div>
+
+    <!-- One-row Programs -->
+    <div class="programs-wrapper">
+      <div class="program-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="program-thumb" style="background-image:url('images/program/Bima\ Kwanza\ Awareness\ Drive.jpeg');"></div>
+        <div class="program-overlay"></div>
+        <div class="program-info">
+          <h3>Bima Kwanza Awareness Drive</h3>
+          <p>
+            “Insurance First” — spreading financial literacy through 
+            schools, communities, and digital platforms across Tanzania.
+          </p>
+          <a href="#" class="local-btn">Explore Program</a>
+        </div>
+      </div>
+
+      <div class="program-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="program-thumb" style="background-image:url('images/program/Digital\ Finance.jpeg');"></div>
+        <div class="program-overlay"></div>
+        <div class="program-info">
+          <h3>Youth in Finance & Insurance</h3>
+          <p>
+            Empowering youth with financial knowledge and skills to 
+            lead the next wave of inclusion.
+          </p>
+          <a href="#" class="local-btn">Explore Program</a>
+        </div>
+      </div>
+
+      <div class="program-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="program-thumb" style="background-image:url('images/program/Community\ Risk\ Protection\ Dialogues.jpeg');"></div>
+        <div class="program-overlay"></div>
+        <div class="program-info">
+          <h3>Community Risk Protection Dialogues</h3>
+          <p>
+            Bringing people together to discuss shared protection and 
+            financial resilience in local communities.
+          </p>
+          <a href="#" class="local-btn">Explore Program</a>
+        </div>
+      </div>
+
+      <div class="program-item" data-aos="fade-up" data-aos-delay="400">
+        <div class="program-thumb" style="background-image:url('images/program/Community\ Risk\ Protection.jpeg');"></div>
+        <div class="program-overlay"></div>
+        <div class="program-info">
+          <h3>Digital Finance for All</h3>
+          <p>
+            Promoting access to digital tools that enhance inclusion 
+            and opportunity across Tanzania.
+          </p>
+          <a href="#" class="local-btn">Explore Program</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    offset: 100,
+    once: true
+  });
+</script>
+
+<!-- RESOURCES SECTION -->
+<section class="resources-section" id="resources">
+  <div class="container">
+    <div class="resources-header" data-aos="fade-up">
+      <h2>Resources</h2>
+      <p>Access educational materials, research summaries, and FAQs to learn more about insurance and financial planning.</p>
+    </div>
+
+    <div class="resources-grid">
+      <!-- Resource Card 1 -->
+      <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-book-open"></i>
+        <h4>Educational Materials</h4>
+        <p>Guides, toolkits, infographics to help you understand insurance and financial planning.</p>
+        <a href="#" class="resource-btn">View Materials</a>
+      </div>
+
+      <!-- Resource Card 2 -->
+      <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-file-alt"></i>
+        <h4>Articles & Reports</h4>
+        <p>Research summaries, articles, and reports highlighting key insights on finance and insurance.</p>
+        <a href="#" class="resource-btn">Read Articles</a>
+      </div>
+
+      <!-- Resource Card 3 -->
+      <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-question-circle"></i>
+        <h4>FAQs</h4>
+        <p>Simple Q&A explaining insurance and financial basics in Swahili and English.</p>
+        <a href="#" class="resource-btn">See FAQs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AOS Library (if not already included) -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    offset: 100,
+    once: true
+  });
+</script>
+
+<section class="stories-pro" id="stories">
+  <div class="container stories-wrapper">
+    <!-- LEFT: TEXT -->
+    <div class="stories-info">
+      <h2>Real People, Real Change</h2>
+      <p>
+        Behind every statistic lies a person whose perspective on money and security has changed. 
+        These are stories of transformation—simple yet powerful testaments to what knowledge can do.
+      </p>
+      <a href="#" class="story-btn">Read More Stories →</a>
+    </div>
+
+    <!-- RIGHT: SLIDER -->
+    <div class="stories-slider">
+      <div class="story-slide active">
+        <div class="story-bg" style="background-image: url('images/Mama\ Asha.jpeg');"></div>
+        <div class="story-overlay">
+          <p>“After attending one of the financial education sessions, I decided to insure my small shop. 
+          I used to worry about fire or theft, but now I know I can recover and start again.”</p>
+          <h5>— Mama Asha, Mwanza</h5>
+        </div>
+      </div>
+
+      <div class="story-slide">
+        <div class="story-bg" style="background-image: url('images/Kelvin.jpeg');"></div>
+        <div class="story-overlay">
+          <p>“The youth training helped me realize that financial planning isn’t something for older people. 
+          I’ve already started saving and teaching others in my youth group.”</p>
+          <h5>— Kelvin, Dar es Salaam</h5>
+        </div>
+      </div>
+
+      <div class="story-slide">
+        <div class="story-bg" style="background-image: url('images/Rehema.jpeg');"></div>
+        <div class="story-overlay">
+          <p>“I never imagined insurance could apply to farmers. Now my cooperative has group coverage 
+          that protects us when rains fail.”</p>
+          <h5>— Rehema, Mtwara</h5>
+        </div>
+      </div>
+
+      <div class="story-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".story-slide");
+    const dots = document.querySelectorAll(".dot");
+    let index = 0;
+
+    function showSlide(n) {
+      slides.forEach((s, i) => {
+        s.classList.toggle("active", i === n);
+        dots[i].classList.toggle("active", i === n);
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        index = i;
+        showSlide(index);
+      });
+    });
+
+    setInterval(nextSlide, 5000); // auto change every 5s
+  });
+</script>
+
+
+
+
+<section class="stories-section" id="stories">
+  <div class="container">
+    <div class="stories-header">
+      <h2>News & Stories</h2>
+      <p>
+        Real stories from communities, partners, and changemakers shaping financial inclusion across Tanzania.
+      </p>
+    </div>
+
+    <div class="stories-grid">
+      <!-- FEATURED STORY -->
+      <div class="story featured">
+        <div class="story-image" style="background-image: url('images/Feature.jpeg');"></div>
+        <div class="story-overlay">
+          <span class="story-tag">Feature</span>
+          <h3>Empowering Women Through Microinsurance</h3>
+          <p>How CIIFI’s community programs are transforming livelihoods and financial security for rural women.</p>
+          <a href="#" class="story-link">Read More →</a>
+        </div>
+      </div>
+
+      <!-- OTHER STORIES -->
+      <div class="story-grid-small">
+        <div class="story small">
+          <div class="story-image" style="background-image: url('images/Youth\ Impact.jpeg');"></div>
+          <div class="story-overlay">
+            <span class="story-tag">Youth Impact</span>
+            <h4>Students Leading Financial Awareness</h4>
+            <a href="#" class="story-link">Read More →</a>
+          </div>
+        </div>
+
+        <div class="story small">
+          <div class="story-image" style="background-image: url('images/Community.jpeg');"></div>
+          <div class="story-overlay">
+            <span class="story-tag">Community</span>
+            <h4>Farmers Adopting Risk Protection Plans</h4>
+            <a href="#" class="story-link">Read More →</a>
+          </div>
+        </div>
+
+        <div class="story small">
+          <div class="story-image" style="background-image: url('images/Partnership.jpeg');"></div>
+          <div class="story-overlay">
+            <span class="story-tag">Partnership</span>
+            <h4>New Collaborations for Rural Training</h4>
+            <a href="#" class="story-link">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stories-footer">
+      <a href="#" class="stories-btn">Explore All Stories</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="partners-section" id="partners">
+  <div class="container">
+    <!-- HEADER -->
+    <div class="partners-header">
+      <h2>Working Together for Inclusion</h2>
+      <p>
+        Collaboration lies at the heart of CIIFI’s progress. Government institutions, regulators, private insurers, schools, youth networks, and development agencies all play a role in expanding access to knowledge.
+      </p>
+      <a href="#" class="partner-btn">Partner With Us </a>
+    </div>
+
+    <!-- LOGOS CAROUSEL -->
+    <div class="partners-carousel">
+      <div class="partner-logo"><img src="images/tra.png" alt="TRA"></div>
+      <div class="partner-logo"><img src="images/tira.png" alt="TIRA"></div>
+      <div class="partner-logo"><img src="images/fsdt.png" alt="FSDT"></div>
+      <div class="partner-logo"><img src="images/camfed.png" alt="CAMFED"></div>
+      <div class="partner-logo"><img src="images/local-ngos.png" alt="Local NGOs"></div>
+      <div class="partner-logo"><img src="images/youth-networks.png" alt="Youth Networks"></div>
+    </div>
+  </div>
+</section>
+
+
+
+   <!-- Call action-->
+
+<section class="cta-section" style="background-image: url('images/community-workshop.jpg');">
+  <div class="overlay"></div>
+  <div class="container cta-content">
+    <h2>Ready to Make a Difference?</h2>
+    <p>
+      Join us in creating communities that understand and trust insurance and finance. 
+      Whether you volunteer, donate, or partner, your contribution helps someone build a stronger future.
+    </p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-volunteer">Volunteer</a>
+      <a href="#" class="btn-donate">Donate</a>
+      <a href="#" class="btn-partner">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+
+      <!-- CONTACT SECTION -->
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-header">
+      <h2>Get in Touch</h2>
+      <p>We would love to hear from you. Reach out for inquiries, volunteering, donations, or partnerships.</p>
+    </div>
+
+    <div class="contact-content">
+      <!-- CONTACT INFO -->
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <p><strong>Address:</strong> Kinondoni, Dar es Salaam, Tanzania</p>
+        <p><strong>Phone:</strong> +255 123 456 789</p>
+        <p><strong>Email:</strong> info@ciifi.org</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MAP PLACEHOLDER -->
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+
+
+  <script>
+    // Optional smooth hero entrance animation
+    window.addEventListener('load', () => {
+      document.querySelector('.hero-content').style.opacity = 0;
+      setTimeout(() => {
+        document.querySelector('.hero-content').style.transition = 'opacity 1.2s ease';
+        document.querySelector('.hero-content').style.opacity = 1;
+      }, 300);
+    });
+  </script>
+
+</body>
+
+<!-- ===============================
+     9. FOOTER
+================================= -->
+<footer class="site-footer">
+  <div class="container footer-content">
+    <!-- QUICK LINKS -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="footer-section">
+      <h4>Contact Info</h4>
+      <p> House No. 34, Survey, Kinondoni Municipality, Dar es Salaam</p>
+      <p> +255 7XX XXX XXX</p>
+      <p> info@ciifi.or.tz</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="footer-section">
+      <h4>Legal & Governance</h4>
+      <p>© 2025 Community Initiative for Insurance and Financial Inclusion (CIIFI). All Rights Reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="#">Download Constitution</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</html>
