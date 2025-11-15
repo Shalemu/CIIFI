@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
   
 </head>
 
@@ -26,45 +26,44 @@
   </div>
 
   <!-- ===== NAVBAR ===== -->
-  <header class="navbar">
-    <div class="logo-container">
-      <img src="images/CIIFI_LOGO.png" alt="CIIFI Logo" class="logo">
+<header class="navbar">
+  <div class="logo-container">
+    <img src="images/CIIFI_LOGO.png" alt="CIIFI Logo" class="logo">
+  </div>
+
+<!-- Using Font Awesome -->
+<div class="menu-toggle" id="menu-toggle">
+  <i class="fas fa-bars"></i>
+  <i class="fas fa-times"></i>
+</div>
+
+
+  <nav class="nav-links" id="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#programs">Programs</a>
+    <a href="#resources">Resources</a>
+    <a href="#stories">Stories</a>
+    <a href="#contact">Contact</a>
+    <a href="#" class="btn-involve" id="open-involve">Get Involved</a>
+  </nav>
+</header>
+
+<!-- Popup Overlay -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-card">
+    <div class="popup-header">
+      <h3>Get Involved</h3>
+      <span class="close-btn" id="close-popup">&times;</span>
     </div>
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#about">Programs</a>
-      <a href="#about">Resources</a>
-
-      <!-- <div class="dropdown">
-        <a href="#" class="dropbtn">Work</a>
-        <div class="dropdown-content">
-          <a href="#our-work">Our Work</a>
-          <a href="#programs">Programs</a>
-          <a href="#resources">Resources</a>
-        </div>
-      </div> -->
-
-      <a href="#stories">Stories</a>
-
-       <a href="#contact">Contact</a>
-
-<div class="dropdown">
-  <a href="#" class="dropbtn btn-involve">Get Involved</a>
-  <div class="dropdown-content horizontal-dropdown">
-
-    <!-- Selection -->
-    <div class="get-involved-options">
-      <button class="select-option" data-type="volunteer">Volunteer</button>
-      <button class="select-option" data-type="partner">Partner</button>
-      <button class="select-option" data-type="donate">Donate</button>
+    <div class="tabs">
+      <button class="tab-btn active" data-target="volunteer-form">Volunteer</button>
+      <button class="tab-btn" data-target="partner-form">Partner</button>
+      <button class="tab-btn" data-target="donate-form">Donate</button>
     </div>
-
-    <!-- Forms -->
-    <div class="involved-forms">
-
+    <div class="forms-container">
       <!-- Volunteer Form -->
-      <form class="involved-form" id="volunteer-form">
+      <form class="involved-form active" id="volunteer-form">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Email" required>
         <input type="tel" placeholder="Phone Number" required>
@@ -73,32 +72,316 @@
       </form>
 
       <!-- Partner Form -->
-      <form class="involved-form" id="partner-form">
-        <input type="text" placeholder="Organization Name" required>
-        <input type="email" placeholder="Contact Email" required>
-        <textarea placeholder="How do you want to collaborate?"></textarea>
-        <button type="submit">Submit</button>
-      </form>
+<form class="involved-form" id="partner-form" enctype="multipart/form-data">
+  <input type="text" placeholder="Organization Name" name="organization_name" required>
 
-      <!-- Donate Form -->
-      <form class="involved-form" id="donate-form">
-        <input type="text" placeholder="Your Name (Optional)">
-        <input type="number" placeholder="Amount" required>
-        <input type="text" placeholder="Lipa na M-Pesa / Account Number" required>
-        <textarea placeholder="Message (Optional)"></textarea>
-        <button type="submit">Donate</button>
-      </form>
+  <input type="email" placeholder="Contact Email" name="contact_or_email" required>
+
+  <textarea placeholder="How do you want to collaborate?" name="short_description"></textarea>
+
+  <label for="image">Upload your Logo:</label>
+  <input type="file" id="image" name="image" accept="image/*">
+
+  <button type="submit">Submit</button>
+</form>
+
+
+
+ <!-- donation form -->
+<form class="involved-form" id="donate-form">
+  <input type="text" name="name" placeholder="Your Name (Optional)">
+  <input type="number" name="amount" placeholder="Amount (TZS)" required>
+
+  <label for="payment_method">Select Payment Method:</label>
+  <select name="payment_method" id="payment_method" required>
+    <option value="">-- Choose Method --</option>
+    <option value="Cash">Cash</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+    <option value="Mobile Money">Mobile Money</option>
+  </select>
+
+  <textarea name="message" placeholder="Message (Optional)"></textarea>
+
+  <button type="submit">Donate</button>
+</form>
+
+
 
     </div>
   </div>
 </div>
 
-</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const openInvolve = document.getElementById("open-involve");
+  const popupOverlay = document.getElementById("popup-overlay");
+  const closePopup = document.getElementById("close-popup");
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const forms = document.querySelectorAll(".involved-form");
+
+  // Toggle Mobile Menu
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("show");
+  });
+
+  // Close menu when link clicked
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      menuToggle.classList.remove("active");
+    });
+  });
+
+  // Open Popup
+  openInvolve.addEventListener("click", e => {
+    e.preventDefault();
+    popupOverlay.classList.add("active");
+  });
+
+  // Close Popup
+  closePopup.addEventListener("click", () => {
+    popupOverlay.classList.remove("active");
+  });
+
+  // Switch Tabs
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      forms.forEach(f => f.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.target).classList.add("active");
+    });
+  });
+});
+</script>
+
+<script>
+
+// ========================
+// PARTNER FORM SUBMISSION
+// ========================
+
+document.addEventListener("submit", async (e) => {
+    const form = e.target;
+    if (form.id !== "partner-form") return;
+
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    console.log("File in formData:", formData.get("image")); // debug
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/api/partners", {
+            method: "POST",
+            body: formData, // do NOT set headers
+        });
+
+        const data = await response.json();
+        console.log("Partner response:", data);
+
+        if (response.ok) {
+            showPartnerSuccessPopup(data.data.organization_name);
+            form.reset();
+        } else {
+            alert(data.message || "Failed to create partner.");
+        }
+    } catch (error) {
+        console.error("Error sending partner data:", error);
+        alert("Could not connect to server. Try again.");
+    }
+});
 
 
-     
-    </nav>
-  </header>
+// ========================
+// SUCCESS POPUP FOR PARTNER
+// ========================
+function showPartnerSuccessPopup(name) {
+    const popup = document.createElement("div");
+    popup.className = "thankyou-popup";
+
+    popup.innerHTML = `
+        <div class="thankyou-card">
+            <h2>🤝 Welcome, ${name}!</h2>
+            <p>Your partnership submission was received.<br>
+            <strong>CIIFI</strong> will contact you soon.</p>
+            <button id="close-partner-thankyou">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // styles
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .thankyou-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .thankyou-card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: popupFade 0.3s ease;
+        }
+        .thankyou-card h2 {
+            margin-bottom: 10px;
+            color: #0d6efd;
+        }
+        #close-partner-thankyou {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        @keyframes popupFade {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // close handlers
+    document.getElementById("close-partner-thankyou").addEventListener("click", () => popup.remove());
+    popup.addEventListener("click", (e) => {
+        if (e.target === popup) popup.remove();
+    });
+}
+</script>
+
+<script>
+// ========================
+// VOLUNTEER FORM SUBMISSION
+// ========================
+
+document.addEventListener("submit", async (e) => {
+    const form = e.target;
+
+    // Only handle Volunteer Form
+    if (form.id !== "volunteer-form") return;
+
+    e.preventDefault();
+
+    console.log("🚀 Volunteer form submitted");
+
+    // Get form fields
+    const name = form.querySelector('input[placeholder="Your Name"]').value;
+    const email = form.querySelector('input[placeholder="Email"]').value;
+    const phone = form.querySelector('input[placeholder="Phone Number"]').value;
+    const description = form.querySelector('textarea').value;
+
+    const payload = {
+        name: name,
+        email: email,
+        phone_number: phone,
+        description: description
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/api/volunteers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        console.log("📦 Volunteer response:", data);
+
+        if (response.ok) {
+            showVolunteerSuccessPopup(data.data.name);
+            form.reset();
+        } else {
+            alert(data.message || "Failed to submit volunteer request.");
+        }
+
+    } catch (error) {
+        console.error("Error sending volunteer data:", error);
+        alert("Could not connect to server. Try again.");
+    }
+});
+
+
+// ========================
+// SUCCESS POPUP FOR VOLUNTEER
+// ========================
+function showVolunteerSuccessPopup(name) {
+    const popup = document.createElement("div");
+    popup.className = "thankyou-popup";
+
+    popup.innerHTML = `
+        <div class="thankyou-card">
+            <h2>🙏 Thank You, ${name}!</h2>
+            <p>Your volunteer application was received.<br>
+            <strong>CIIFI</strong> will reach out to you soon.</p>
+            <button id="close-volunteer-thankyou">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // styles
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .thankyou-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .thankyou-card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: popupFade 0.3s ease;
+        }
+        .thankyou-card h2 {
+            margin-bottom: 10px;
+            color: #28a745;
+        }
+        #close-volunteer-thankyou {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // close handlers
+    document.getElementById("close-volunteer-thankyou")
+        .addEventListener("click", () => popup.remove());
+
+    popup.addEventListener("click", (e) => {
+        if (e.target === popup) popup.remove();
+    });
+}
+</script>
+
+
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero" id="home">
@@ -175,7 +458,7 @@
 
   observer.observe(document.querySelector('.hero-stats'));
 </script>
-  </section>
+</section>
 
 
 <section class="about-section" id="about">
@@ -302,57 +585,57 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
-
 <section class="what-we-do" id="our-work">
   <div class="container">
-    <div class="what-we-do-content">
-      
-      <!-- LEFT COLUMN -->
-      <div class="info-column">
-        <div class="section-title">
-          <h3>What We Do</h3>
+    <div class="header">
+      <h2>What We Do</h2>
+      <p>
+        We create impact through education, research, and innovation, empowering communities
+        to build stronger financial and social systems.
+      </p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-item">
+        <div class="icon"><i class="fas fa-book-reader"></i></div>
+        <div class="text">
+          <h3>Insurance & Financial Literacy</h3>
+          <p>Interactive workshops that teach practical skills in budgeting, saving, and risk planning.</p>
+          <a href="#">Explore</a>
         </div>
-        <p>
-          Insurance and financial planning may seem complicated, yet their impact is simple:
-          they protect lives, families, and livelihoods. CIIFI helps people understand these systems
-          through participatory learning and community engagement.
-        </p>
-        <a href="#" class="btn-learn-more">Explore All Programs</a>
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <div class="features-column">
-        <div class="feature-card">
-          <i class="fas fa-book-reader"></i>
-          <h4>Insurance & Financial Literacy</h4>
-          <p>Workshops and programs that teach people to budget, save, and plan for the unexpected.</p>
-          <a href="#" class="read-more">Read More</a>
+      <div class="work-item">
+        <div class="icon"><i class="fas fa-chart-line"></i></div>
+        <div class="text">
+          <h3>Research & Policy Advocacy</h3>
+          <p>We use data to shape fair, inclusive, and transparent financial systems.</p>
+          <a href="#">Explore</a>
         </div>
+      </div>
 
-        <div class="feature-card">
-          <i class="fas fa-chart-line"></i>
-          <h4>Research & Policy Advocacy</h4>
-          <p>We gather data and promote policies that make financial systems fair and inclusive.</p>
-          <br><a href="#" class="read-more">Read More</a>
+      <div class="work-item">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <div class="text">
+          <h3>Community Empowerment</h3>
+          <p>Building local capacity through training, mentorship, and collaboration.</p>
+          <a href="#">Explore</a>
         </div>
+      </div>
 
-        <div class="feature-card">
-          <i class="fas fa-users"></i>
-          <h4>Community Empowerment</h4>
-          <p>Training local leaders and groups to share financial knowledge within their communities.</p>
-          <a href="#" class="read-more">Read More</a>
-        </div>
-
-        <div class="feature-card">
-          <i class="fas fa-mobile-alt"></i>
-          <h4>Digital Innovation & Access</h4>
-          <p>Using mobile and online tools to connect educators and learners across regions.</p>
-         <br> <a href="#" class="read-more">Read More</a>
+      <div class="work-item">
+        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+        <div class="text">
+          <h3>Digital Innovation & Access</h3>
+          <p>Leveraging mobile and web technologies to enhance learning and access to services.</p>
+          <a href="#">Explore</a>
         </div>
       </div>
     </div>
   </div>
+</section>
 
+<section class="about-work-section" id="about-work"></section>
   <!-- ABOUT SECTION -->
   <div class="about-work">
     <div class="container about-content">
@@ -381,83 +664,93 @@ document.addEventListener("DOMContentLoaded", () => {
 <section class="our-impact" id="impact">
   <div class="container impact-content">
     <div class="impact-text">
+      <h2>Our Impact</h2>
+      <div class="underline"></div>
       <h3>Turning Awareness Into Action</h3>
       <p>
-        Every person reached represents a story of transformation. A mother who now saves for her children’s education, 
-        a farmer who protects his crops against drought, a young entrepreneur who secures her small business—these are the true measures of progress.
+        Every person reached represents a story of transformation, a mother saving for her children’s education, 
+        a farmer protecting his crops from drought, a young entrepreneur securing her small business. 
+        These are the true measures of progress.
       </p>
       <p>
-        The reach of CIIFI’s programs continues to expand as more partners, schools, and local governments recognize the value of financial education. 
+        CIIFI’s reach keeps expanding as more partners, schools, and local governments embrace financial education. 
         Awareness is turning into practice, and practice is building resilience.
       </p>
 
-    <div class="impact-stats">
-  <div class="stat-card">
-    <h4><span class="count" data-target="12000">0</span>+</h4>
-    <p>People reached across 7 regions</p>
-  </div>
-  <div class="stat-card">
-    <h4><span class="count" data-target="300">0</span>+</h4>
-    <p>Youth & community educators trained</p>
-  </div>
-  <div class="stat-card">
-    <h4><span class="count" data-target="45">0</span>+</h4>
-    <p>Public dialogues & awareness events</p>
-  </div>
-  <div class="stat-card">
-    <h4><span class="count" data-target="20">0</span>+</h4>
-    <p>Partnerships with key institutions</p>
-  </div>
-</div>
-
-
-      <a href="#" class="impact-btn">See How We Make a Difference</a>
+      <div class="impact-stats">
+        <div class="stat-card fade-up">
+          <h4><span class="count" data-target="12000">0</span>+</h4>
+          <p>People reached across 7 regions</p>
+        </div>
+        <div class="stat-card fade-up">
+          <h4><span class="count" data-target="300">0</span>+</h4>
+          <p>Youth & community educators trained</p>
+        </div>
+        <div class="stat-card fade-up">
+          <h4><span class="count" data-target="45">0</span>+</h4>
+          <p>Public dialogues & awareness events</p>
+        </div>
+        <div class="stat-card fade-up">
+          <h4><span class="count" data-target="20">0</span>+</h4>
+          <p>Partnerships with key institutions</p>
+        </div>
+      </div>
     </div>
 
-    <div class="impact-image">
+    <div class="impact-image fade-right">
       <img src="images/Community.jpeg" alt="CIIFI Impact Story">
     </div>
   </div>
 </section>
 
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll(".count");
-    let animated = false;
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count");
+  const animatedEls = document.querySelectorAll(".fade-up, .fade-right");
+  let animated = false;
 
-    function animateCounters() {
-      const triggerBottom = window.innerHeight * 0.9;
-      const impactSection = document.querySelector(".our-impact");
-      const sectionTop = impactSection.getBoundingClientRect().top;
+  function animateCounters() {
+    const triggerBottom = window.innerHeight * 0.9;
+    const impactSection = document.querySelector(".our-impact");
+    const sectionTop = impactSection.getBoundingClientRect().top;
 
-      if (!animated && sectionTop < triggerBottom) {
-        counters.forEach(counter => {
-          const target = +counter.getAttribute("data-target");
-          let current = 0;
-          const increment = target / 100; // adjust for speed
-
-          const updateCount = () => {
-            current += increment;
-            if (current < target) {
-              counter.innerText = Math.ceil(current);
-              requestAnimationFrame(updateCount);
-            } else {
-              counter.innerText = target.toLocaleString();
-            }
-          };
-
-          // show the count nicely
-          counter.style.opacity = 1;
-          counter.style.transform = "translateY(0)";
-          updateCount();
-        });
-
-        animated = true;
-      }
+    if (!animated && sectionTop < triggerBottom) {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute("data-target");
+        let current = 0;
+        const increment = target / 100;
+        const updateCount = () => {
+          current += increment;
+          if (current < target) {
+            counter.innerText = Math.ceil(current);
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        updateCount();
+      });
+      animated = true;
     }
+  }
 
-    window.addEventListener("scroll", animateCounters);
+  function revealOnScroll() {
+    animatedEls.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.9) {
+        el.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    animateCounters();
+    revealOnScroll();
   });
+  revealOnScroll(); // initial check
+});
 </script>
 
 <section class="programs-area" id="programs">
@@ -484,7 +777,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="program-info">
           <h3>Bima Kwanza Awareness Drive</h3>
           <p>
-            “Insurance First” — spreading financial literacy through 
+            “Insurance First”, spreading financial literacy through 
             schools, communities, and digital platforms across Tanzania.
           </p>
           <a href="#" class="local-btn">Explore Program</a>
@@ -681,79 +974,41 @@ document.addEventListener("DOMContentLoaded", () => {
       </p>
     </div>
 
-    <div class="stories-grid">
-      <!-- FEATURED STORY -->
-      <div class="story featured">
-        <div class="story-image" style="background-image: url('images/Feature.jpeg');"></div>
-        <div class="story-overlay">
-          <span class="story-tag">Feature</span>
-          <h3>Empowering Women Through Microinsurance</h3>
-          <p>How CIIFI’s community programs are transforming livelihoods and financial security for rural women.</p>
-          <a href="#" class="story-link">Read More →</a>
-        </div>
-      </div>
+    <div class="stories-grid" id="stories-grid">
+      <!-- Featured blog injected here by JS -->
+      <div id="featured-story"></div>
 
-      <!-- OTHER STORIES -->
-      <div class="story-grid-small">
-        <div class="story small">
-          <div class="story-image" style="background-image: url('images/Youth\ Impact.jpeg');"></div>
-          <div class="story-overlay">
-            <span class="story-tag">Youth Impact</span>
-            <h4>Students Leading Financial Awareness</h4>
-            <a href="#" class="story-link">Read More →</a>
-          </div>
-        </div>
-
-        <div class="story small">
-          <div class="story-image" style="background-image: url('images/Community.jpeg');"></div>
-          <div class="story-overlay">
-            <span class="story-tag">Community</span>
-            <h4>Farmers Adopting Risk Protection Plans</h4>
-            <a href="#" class="story-link">Read More →</a>
-          </div>
-        </div>
-
-        <div class="story small">
-          <div class="story-image" style="background-image: url('images/Partnership.jpeg');"></div>
-          <div class="story-overlay">
-            <span class="story-tag">Partnership</span>
-            <h4>New Collaborations for Rural Training</h4>
-            <a href="#" class="story-link">Read More →</a>
-          </div>
-        </div>
-      </div>
+      <!-- 3 small blogs injected here by JS -->
+      <div class="story-grid-small" id="small-stories"></div>
     </div>
 
     <div class="stories-footer">
-      <a href="#" class="stories-btn">Explore All News</a>
+      <a href="pages/blogs.html" class="stories-btn">Explore All News</a>
     </div>
   </div>
 </section>
+
 
 
 <section class="partners-section" id="partners">
   <div class="container">
+
     <!-- HEADER -->
     <div class="partners-header">
       <h2>Working Together for Inclusion</h2>
       <p>
-        Collaboration lies at the heart of CIIFI’s progress. Government institutions, regulators, private insurers, schools, youth networks, and development agencies all play a role in expanding access to knowledge.
+        Collaboration lies at the heart of CIIFI’s progress. Government institutions,
+        regulators, private insurers, schools, youth networks, and development
+        agencies all play a role in expanding access to knowledge.
       </p>
-      <a href="#" class="partner-btn">Partner With Us </a>
+      <a href="#" class="partner-btn" id="partner-open-btn">Partner With Us</a>
     </div>
 
-    <!-- LOGOS CAROUSEL -->
-    <div class="partners-carousel">
-      <div class="partner-logo"><img src="images/Partnes/TRA.png" alt="TRA"></div>
-      <div class="partner-logo"><img src="images/Partnes/TIRA.png" alt="TIRA"></div>
-      <div class="partner-logo"><img src="images/Partnes/FSDT.png" alt="FSDT"></div>
-      <div class="partner-logo"><img src="images/Partnes/CAMFED.png" alt="CAMFED"></div>
-      <div class="partner-logo"><img src="images/Partnes/NGOs.png" alt="Local NGOs"></div>
-      <div class="partner-logo"><img src="images/Partnes/" alt="Youth Networks"></div>
-    </div>
+    <!-- LOGOS CAROUSEL (DYNAMIC) -->
+    <div class="partners-carousel" id="partners-carousel"></div>
+
   </div>
 </section>
-
 
 
    <!-- Call action-->
@@ -767,12 +1022,13 @@ document.addEventListener("DOMContentLoaded", () => {
       Whether you volunteer, donate, or partner, your contribution helps someone build a stronger future.
     </p>
     <div class="cta-buttons">
-      <a href="#" class="btn-volunteer">Volunteer</a>
-      <a href="#" class="btn-donate">Donate</a>
-      <a href="#" class="btn-partner">Partner With Us</a>
+      <a href="#" class="btn-volunteer cta-btn" data-target="volunteer-form">Volunteer</a>
+      <a href="#" class="btn-donate cta-btn" data-target="donate-form">Donate</a>
+      <a href="#" class="btn-partner cta-btn" data-target="partner-form">Partner With Us</a>
     </div>
   </div>
 </section>
+
 
 
       <!-- CONTACT SECTION -->
@@ -788,9 +1044,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- CONTACT INFO -->
       <div class="contact-info">
         <h3>Contact Details</h3>
-        <p><strong>Address:</strong> Kinondoni, Dar es Salaam, Tanzania</p>
-        <p><strong>Phone:</strong> +255 714 955 5004</p>
-        <p><strong>Email:</strong> info@ciifi.org</p>
+        <p><strong>Address:</strong> House No: 34, University Road, Survey, Dar es Salaam, Tanzania</p>
+        <p><strong>Phone:</strong> +255 733 010 707</p>
+        <p><strong>Email:</strong> info@ciifi.or.tz</p>
         <div class="social-links">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -811,7 +1067,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
 
-    <!-- MAP PLACEHOLDER -->
   <!-- MAP PLACEHOLDER -->
 <div class="contact-map">
   <iframe
@@ -828,6 +1083,81 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
+<!-- Your other scripts above (popup, navbar, etc.) -->
+
+<script>
+console.log("donation.js loaded successfully");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const donateForm = document.getElementById("donate-form");
+  if (!donateForm) return;
+
+  donateForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("🚀 Donate form submitted");
+
+    const name = donateForm.querySelector('input[name="name"]').value.trim() || "Anonymous";
+    const amount = donateForm.querySelector('input[name="amount"]').value.trim();
+    const payment_method = donateForm.querySelector('select[name="payment_method"]').value.trim();
+    const message = donateForm.querySelector('textarea[name="message"]').value.trim();
+
+    if (!amount || !payment_method) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/donations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          amount,
+          payment_method,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+      console.log("📦 Server response:", data);
+
+      if (response.ok && data.success) {
+        showSuccessPopup(name);
+        donateForm.reset();
+      } else {
+        alert(data.message || JSON.stringify(data.errors) || "Something went wrong while sending your donation.");
+      }
+    } catch (error) {
+      console.error("Error sending donation:", error);
+      alert("Failed to connect to server. Please try again.");
+    }
+  });
+
+  function showSuccessPopup(donorName) {
+    const popup = document.createElement("div");
+    popup.className = "thankyou-popup";
+    popup.innerHTML = `
+      <div class="thankyou-card">
+        <h2>🎉 Congratulations, ${donorName || "Donor"}!</h2>
+        <p>Thank you for your generous donation to <strong>CIIFI</strong>!<br>
+        Your contribution helps us build financially informed communities. 💖</p>
+        <button id="close-thankyou">Close</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    // Close handlers
+    const closeBtn = popup.querySelector("#close-thankyou");
+    closeBtn.addEventListener("click", () => popup.remove());
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.remove();
+    });
+  }
+});
+</script>
 
 
   <script>
@@ -841,9 +1171,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   </script>
 
-  <script src="js/get-involved.js">
+
 
   </script>
+
+    <script src="js/get-involved.js"></script>
+    <script src="js/partner.js"></script>
+    <script src="js/blogs.js"></script>
+    <!-- <script src="js/donation.js"></script> -->
 
 </body>
 
