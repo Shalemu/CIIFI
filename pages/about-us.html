@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/about.css">
+</head>
+<body>
+    <!-- tap bar -->
+       <div class="topbar">
+    <div class="topbar-left">
+      <span><i class="fas fa-phone"></i> +255 714 955 5004</span>
+      <span><i class="fas fa-envelope"></i> info@ciifi.or.tz</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Login</a>
+      <a href="#">Donate</a>
+    </div>
+  </div>
+
+  <!-- header -->
+   <!-- navbar -->
+     <header class="navbar">
+    <div class="logo-container">
+      <img src="../images/CIIFI_LOGO.png" alt="CIIFI Logo" class="logo">
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+      <i class="fas fa-times"></i>
+    </div>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="../index.html#home">Home</a>
+      <a href="../index.html#about">About Us</a>
+      <a href="../index.html#programs">Programs</a>
+      <a href="../index.html#resources">Resources</a>
+      <a href="../index.html#stories">Stories</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="#" class="btn-involve" id="open-involve">Get Involved</a>
+    </nav>
+  </header>
+
+   <!-- ===== GET INVOLVED POPUP ===== -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup-card">
+      <div class="popup-header">
+        <h3>Get Involved</h3>
+        <span class="close-btn" id="close-popup">&times;</span>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-target="volunteer-form">Volunteer</button>
+        <button class="tab-btn" data-target="partner-form">Partner</button>
+        <button class="tab-btn" data-target="donate-form">Donate</button>
+      </div>
+      <div class="forms-container">
+        <!-- Volunteer Form -->
+        <form class="involved-form active" id="volunteer-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <textarea placeholder="Tell us why you want to volunteer"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+
+        <!-- Partner Form -->
+        <form class="involved-form" id="partner-form" enctype="multipart/form-data">
+          <input type="text" placeholder="Organization Name" name="organization_name" required>
+          <input type="email" placeholder="Contact Email" name="contact_or_email" required>
+          <textarea placeholder="How do you want to collaborate?" name="short_description"></textarea>
+          <label for="image">Upload your Logo:</label>
+          <input type="file" id="image" name="image" accept="image/*">
+          <button type="submit">Submit</button>
+        </form>
+
+        <!-- Donation Form -->
+        <form class="involved-form" id="donate-form">
+          <input type="text" name="name" placeholder="Your Name (Optional)">
+          <input type="number" name="amount" placeholder="Amount (TZS)" required>
+          <label for="payment_method">Select Payment Method:</label>
+          <select name="payment_method" id="payment_method" required>
+            <option value="">-- Choose Method --</option>
+            <option value="Cash">Cash</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Mobile Money">Mobile Money</option>
+          </select>
+          <textarea name="message" placeholder="Message (Optional)"></textarea>
+          <button type="submit">Donate</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const openInvolve = document.getElementById("open-involve");
+  const popupOverlay = document.getElementById("popup-overlay");
+  const closePopup = document.getElementById("close-popup");
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const forms = document.querySelectorAll(".involved-form");
+
+  // Toggle Mobile Menu
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("show");
+  });
+
+  // Close menu when link clicked
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      menuToggle.classList.remove("active");
+    });
+  });
+
+  // Open Popup
+  openInvolve.addEventListener("click", e => {
+    e.preventDefault();
+    popupOverlay.classList.add("active");
+  });
+
+  // Close Popup
+  closePopup.addEventListener("click", () => {
+    popupOverlay.classList.remove("active");
+  });
+
+  // Switch Tabs
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      forms.forEach(f => f.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.target).classList.add("active");
+    });
+  });
+});
+</script>
+
+
+    <!-- About SECTION -->
+    <section class="about-hero">
+      <div class="overlay"></div>
+      <div class="about-hero-content">
+        <h1>About CIIFI</h1>
+        <p>Inclusive Protection for Every Tanzanian Life</p>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="about-intro container">
+      <div class="intro-text">
+        <h2>Introduction to CIIFI</h2>
+        <p>
+          Across Tanzania, millions of hardworking youth and women in the informal sector, 
+          small-scale farmers, small traders, boda boda riders, and VICOBA members face 
+          daily risks that threaten to erase their livelihoods in an instant. A poor harvest, 
+          an unexpected illness, or a sudden family tragedy can undo years, if not decades, 
+          of perseverance and hard work. At our core, we believe that financial resilience 
+          is not a privilege, but a fundamental right for every Tanzanian family.
+        </p>
+
+        <div class="intro-icons">
+          <div class="icon-box">
+            <span class="icon-circle">✓</span>
+            <h4>Community-rooted</h4>
+            <p>Solutions built with and for Tanzanian communities.</p>
+          </div>
+
+          <div class="icon-box">
+            <span class="icon-circle">★</span>
+            <h4>Impact-driven</h4>
+            <p>We design microinsurance based on real household needs.</p>
+          </div>
+
+          <div class="icon-box">
+            <span class="icon-circle">❤</span>
+            <h4>Professional Team</h4>
+            <p>Experts committed to inclusive protection.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-image">
+        <img src="images/office.jpg" alt="CIIFI Team">
+      </div>
+    </section>
+    <br><br>
+
+    <!-- FULL CONTENT -->
+    <section class="content container">
+      <h2>Our Work & Philosophy</h2>
+      <p>
+        Our multidisciplinary team is deeply rooted in the communities we serve, collaborating closely 
+        with local partners to design microinsurance and risk management solutions that truly reflect 
+        the unique challenges and aspirations of low-income Tanzanians. By listening to their stories 
+        and understanding their realities, we co-create products that are practical, relevant, and accessible. 
+        Our advocacy extends beyond product development, we champion the cause of inclusive protection, 
+        ensuring that no individual or family is left behind on the path to financial security.
+      </p>
+
+      <h3>Striking the Right Balance</h3>
+      <p>
+        True and lasting success in microinsurance is achieved when insurers and distributors operate sustainably, 
+        fostering a business environment where profitability goes hand in hand with genuine value for low-income customers. 
+        We are committed to nurturing this delicate equilibrium, building trust at every level of the value chain, 
+        and transforming protection from a mere product into a shared commitment.
+      </p>
+
+      <h3>Community Resilience 360 (CR360)</h3>
+      <p>
+        Insurance is only one layer of protection in the broader landscape of risk management. True resilience, 
+        in our view, stems from a holistic system that empowers households to anticipate and absorb shocks, 
+        recover, and adapt in the face of adversity. Our Community Resilience 360 (CR360) model goes beyond insurance 
+        to integrate financial literacy, risk awareness, and proactive preventive measures.
+      </p>
+
+      <h3>The Golden Principle  SUAVE</h3>
+      <div class="suave-pills">
+        <span>Simple</span>
+        <span>Understood</span>
+        <span>Accessible</span>
+        <span>Valuable</span>
+        <span>Efficient</span>
+      </div>
+      <p>
+        Microinsurance must be clear, fair, and genuinely useful. We partner with institutions to develop solutions 
+        tailored to the diverse needs of low-income communities. Whether it is crop coverage for smallholder farmers, 
+        hospital cash plans for market women, or education policies for children, every product delivers tangible value 
+        to its users, fostering trust and long-term resilience.
+      </p>
+
+      <h3>Evolving with People's Needs</h3>
+      <p>
+        Tanzanian communities are ever-evolving, and so are the risks that come with changing lifestyles and an evolving economy. 
+        We believe products should grow with people's lives through continuous improvement and innovation.
+      </p>
+
+      <h3>Building Local Strength</h3>
+      <p>
+        True change happens when knowledge stays within communities. Through our capacity-building programs, 
+        we train local institutions, cooperatives, youth, and women in underserved communities to understand, manage, adopt, 
+        and promote microinsurance. By transferring skills and tools, we enable our partners to continue expanding access, 
+        creating lasting impact from within.
+      </p>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="photo-section container">
+      <img src="images/comminity.jpg" alt="Community">
+      <img src="images/team work.jpg" alt="Team Work">
+      <img src="images/comminity event.jpg" alt="Community Event">
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <p>House No. 34, Survey, Kinondoni Municipality, Dar es Salaam</p>
+          <p>+255 733 010 707</p>
+          <p>info@ciifi.or.tz</p>
+
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-column">
+          <h4>Legal & Governance</h4>
+          <ul>
+            <li><a href="#">Download Constitution</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Community Initiative for Insurance and Financial Inclusion (CIIFI). All Rights Reserved.</p>
+        <p>Designed by CIIFI Web Team</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="../js/get-involved.js"></script>
+  <script src="../js/blogs.js"></script>
+
+</body>
+</html>
+
+</html>

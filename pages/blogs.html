@@ -113,6 +113,54 @@
   <!-- ================= BLOGS SECTION ================= -->
 </header>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const openInvolve = document.getElementById("open-involve");
+  const popupOverlay = document.getElementById("popup-overlay");
+  const closePopup = document.getElementById("close-popup");
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const forms = document.querySelectorAll(".involved-form");
+
+  // Toggle Mobile Menu
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("show");
+  });
+
+  // Close menu when link clicked
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      menuToggle.classList.remove("active");
+    });
+  });
+
+  // Open Popup
+  openInvolve.addEventListener("click", e => {
+    e.preventDefault();
+    popupOverlay.classList.add("active");
+  });
+
+  // Close Popup
+  closePopup.addEventListener("click", () => {
+    popupOverlay.classList.remove("active");
+  });
+
+  // Switch Tabs
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      forms.forEach(f => f.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.target).classList.add("active");
+    });
+  });
+});
+</script>
+
+
 <!-- ===== HERO HEADER (ADD HERE) ===== -->
 <section class="page-hero">
   <div class="page-hero-content">

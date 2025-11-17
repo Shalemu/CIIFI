@@ -78,6 +78,18 @@ p {
       height: 45px;
     }
 
+    section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s ease-out;
+}
+
+section.show-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -93,6 +105,16 @@ p {
   position: relative;
   transition: color 0.3s ease;
 }
+.nav-links a {
+  position: relative;
+  padding-left: 12px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a.active {
+  color: #009247;
+}
+
 
 /* Remove underline effect for Get Involved button */
 .nav-links a.btn-involve {
@@ -177,10 +199,10 @@ p {
     font-size: 1rem;
   }
 
-  .nav-links a.btn-involve {
+  /* .nav-links a.btn-involve {
     background: linear-gradient(90deg, #0f75bf, #009247);
     color: #fff;
-  }
+  } */
 }
 
 
@@ -2085,7 +2107,6 @@ p {
   font-weight: 800;
   margin-bottom: 20px;
   background: linear-gradient(90deg, #f1f794, #fff);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
